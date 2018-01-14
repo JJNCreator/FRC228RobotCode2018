@@ -1,7 +1,13 @@
-
 package org.usfirst.frc.team228.robot;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
+
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Compressor;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
