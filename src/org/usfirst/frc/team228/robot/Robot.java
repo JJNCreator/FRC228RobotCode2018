@@ -26,6 +26,9 @@ import org.usfirst.frc.team228.robot.subsystems.ExampleSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	XboxController driveController;
+	XboxController coDriveController;
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
