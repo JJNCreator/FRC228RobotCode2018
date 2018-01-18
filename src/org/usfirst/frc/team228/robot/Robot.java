@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		driveController = new XboxController(0);
-		coDriverController = new XboxController(1);
+		coDriveController = new XboxController(1);
 	}
 
 	/**
