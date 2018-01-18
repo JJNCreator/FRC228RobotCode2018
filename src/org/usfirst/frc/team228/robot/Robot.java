@@ -27,8 +27,8 @@ import org.usfirst.frc.team228.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 	
-	XboxController driveController;
-	XboxController coDriveController;
+	XboxController driverController;
+	XboxController coDriverController;
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
@@ -47,8 +47,8 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
-		driveController = new XboxController(0);
-		coDriveController = new XboxController(1);
+		driverController = new XboxController(0);
+		coDriverController = new XboxController(1);
 	}
 
 	/**
