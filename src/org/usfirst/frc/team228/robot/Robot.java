@@ -46,6 +46,9 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		driveController = new XboxController(0);
+		coDriverController = new XboxController(1);
 	}
 
 	/**
