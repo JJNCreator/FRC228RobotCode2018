@@ -6,7 +6,10 @@ This outline will help us organize the functions of the robot, and how the code 
  - 
  
 --Code Structure--
- - Variables -
+VARIABLES
   - Two controllers (driver and operator)
   - RobotDrive
+  
+FUNCTIONS
+
 
