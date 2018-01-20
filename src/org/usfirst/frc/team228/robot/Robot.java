@@ -65,6 +65,7 @@ public class Robot extends IterativeRobot {
 		//Set up driver mode choices
 		selectedDriverMode.addDefault("Arcade Drive", arcadeMode);
 		selectedDriverMode.addObject("Tank Mode", tankMode);
+		selectedDriverMode.addObject("GTA Mode", GTAMode);
 		SmartDashboard.putData("Drive Options", selectedDriverMode);
 		
 		//Assign Victors
