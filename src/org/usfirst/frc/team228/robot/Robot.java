@@ -62,16 +62,26 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
+		//Set up driver mode choices
+		selectedDriverMode.addDefault("Arcade Drive", arcadeMode);
+		selectedDriverMode.addObject("Tank Mode", tankMode);
+		SmartDashboard.putData("Drive Options", selectedDriverMode);
+		
+		//Assign Victors
 		leftDrive1 = new VictorSP(0);
 		leftDrive2 = new VictorSP(1);
 		rightDrive1 = new VictorSP(2);
 		rightDrive2 = new VictorSP(3);
 		
+		//Since robotDrive can only take two SpeedControllers, we'll set up two
+		//SpeedController Groups to make a four-motor drive
 		SpeedControllerGroup leftDrive = new SpeedControllerGroup(leftDrive1, leftDrive2);
 		SpeedControllerGroup rightDrive = new SpeedControllerGroup(rightDrive1, rightDrive2);
 		
+		//Assign the robot drive with the two SpeedController Groups
 		robotDrive = new DifferentialDrive(leftDrive, rightDrive);
 		
+		//Assign the two controllers based on what port they're in
 		driverController = new XboxController(0);
 		operatorController = new XboxController(1);
 	}
@@ -143,6 +153,20 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		//Scheduler.getInstance().run();
 		
+		robotTeleop();
+		
+	}
+	/**
+	 * This function is called periodically during test mode
+	 */
+	@Override
+	public void testPeriodic() {
+		LiveWindow.run();
+	}
+	/***
+	 * This function is responsible for driving the robot during teleop period
+	 */
+	public void robotTeleop() {
 		driverMode = (String)selectedDriverMode.getSelected();
 		
 		switch(driverMode) {
@@ -153,13 +177,5 @@ public class Robot extends IterativeRobot {
 			robotDrive.tankDrive(driverController.getRawAxis(1), driverController.getRawAxis(5));
 			break;
 		}
-		
-	}
-	/**
-	 * This function is called periodically during test mode
-	 */
-	@Override
-	public void testPeriodic() {
-		LiveWindow.run();
 	}
 }
