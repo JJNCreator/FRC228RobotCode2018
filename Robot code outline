@@ -3,13 +3,15 @@
 This outline will help us organize the functions of the robot, and how the code will be written.  
 
 --Goals--
- - 
- 
+DRIVER
+
+OPERATOR
+
+ROBOT FUNCTIONS
+
 --Code Structure--
 VARIABLES
-  - Two controllers (driver and operator)
-  - RobotDrive
-  
+
 FUNCTIONS
 
 
