@@ -7,7 +7,11 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Compressor;
 
+import edu.wpi.first.wpilibj.drive.MecanumDrive;	//Imported if we need it
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;	//Needed for drive train
+
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -27,7 +31,19 @@ import org.usfirst.frc.team228.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 	
-	XboxController driverController, coDriverController;
+	XboxController driverController, operatorController;
+	DifferentialDrive robotDrive;
+	VictorSP leftDrive1, leftDrive2, rightDrive1, rightDrive2;
+	
+	final String arcadeMode = "Arcade";
+	final String tankMode = "Tank";
+	final String GTAMode = "GTA";
+	String driverMode;
+	
+	SendableChooser<String> selectedDriverMode;
+	
+	
+
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
@@ -46,8 +62,18 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
+		leftDrive1 = new VictorSP(0);
+		leftDrive2 = new VictorSP(1);
+		rightDrive1 = new VictorSP(2);
+		rightDrive2 = new VictorSP(3);
+		
+		SpeedControllerGroup leftDrive = new SpeedControllerGroup(leftDrive1, leftDrive2);
+		SpeedControllerGroup rightDrive = new SpeedControllerGroup(rightDrive1, rightDrive2);
+		
+		robotDrive = new DifferentialDrive(leftDrive, rightDrive);
+		
 		driverController = new XboxController(0);
-		coDriverController = new XboxController(1);
+		operatorController = new XboxController(1);
 	}
 
 	/**
@@ -115,7 +141,19 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
+		//Scheduler.getInstance().run();
+		
+		driverMode = (String)selectedDriverMode.getSelected();
+		
+		switch(driverMode) {
+		case arcadeMode:
+			robotDrive.arcadeDrive(driverController.getRawAxis(1), driverController.getRawAxis(4));
+			break;
+		case tankMode:
+			robotDrive.tankDrive(driverController.getRawAxis(1), driverController.getRawAxis(5));
+			break;
+		}
+		
 	}
 	/**
 	 * This function is called periodically during test mode
