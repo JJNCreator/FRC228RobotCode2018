@@ -8,9 +8,13 @@ DRIVER
 OPERATOR
 
 ROBOT FUNCTIONS
+Autonomous
+
+Teleop
 
 --Code Structure--
 VARIABLES
+
 
 FUNCTIONS
 
