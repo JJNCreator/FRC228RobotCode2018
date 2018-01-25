@@ -115,7 +115,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = chooser.getSelected();		
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
