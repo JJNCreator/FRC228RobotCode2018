@@ -177,6 +177,8 @@ public class Robot extends IterativeRobot {
 		case tankMode:
 			robotDrive.tankDrive(driverController.getRawAxis(1), driverController.getRawAxis(5));
 			break;
+		case GTAMode:
+			break;
 		}
 	}
 }
