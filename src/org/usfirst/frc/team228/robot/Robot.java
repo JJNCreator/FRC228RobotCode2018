@@ -161,6 +161,9 @@ public class Robot extends IterativeRobot {
 	public void robotTeleop() {
 		
 		//DRIVER CONTROLS
+		double arcadeLeftStick;
+		double tankLeftStick;
+		double tankRightStick;
 		//Set the selected driver mode
 		driverMode = (String)selectedDriverMode.getSelected();
 		
@@ -168,11 +171,29 @@ public class Robot extends IterativeRobot {
 		switch(driverMode) {
 		//Arcade drive
 		case arcadeMode:
-			robotDrive.arcadeDrive(driverController.getRawAxis(1), driverController.getRawAxis(4));
+			if(driverController.getRawAxis(1) >= 0) {
+				arcadeLeftStick = Math.pow(driverController.getRawAxis(1), 2);
+			}
+			else {
+				arcadeLeftStick = (-1 * Math.pow(driverController.getRawAxis(1), 2));
+			}
+			robotDrive.arcadeDrive(arcadeLeftStick, driverController.getRawAxis(4));
 			break;
 		//Tank drive
 		case tankMode:
-			robotDrive.tankDrive(driverController.getRawAxis(1), driverController.getRawAxis(5));
+			if(driverController.getRawAxis(1) >= 0) {
+				tankLeftStick = Math.pow(driverController.getRawAxis(1), 2);
+			}
+			else {
+				tankLeftStick = (-1 * Math.pow(driverController.getRawAxis(1), 2));
+			}
+			if(driverController.getRawAxis(5) >= 0) {
+				tankRightStick = Math.pow(driverController.getRawAxis(5), 2);
+			}
+			else {
+				tankRightStick = (-1 * Math.pow(driverController.getRawAxis(5), 2));
+			}
+			robotDrive.tankDrive(tankLeftStick, tankRightStick);
 			break;
 		//GTA drive
 		case GTAMode:
