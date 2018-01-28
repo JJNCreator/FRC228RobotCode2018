@@ -161,15 +161,20 @@ public class Robot extends IterativeRobot {
 	public void robotTeleop() {
 		
 		//DRIVER CONTROLS
+		//Set the selected driver mode
 		driverMode = (String)selectedDriverMode.getSelected();
 		
+		//switch between different driver modes based on the selected one
 		switch(driverMode) {
+		//Arcade drive
 		case arcadeMode:
 			robotDrive.arcadeDrive(driverController.getRawAxis(1), driverController.getRawAxis(4));
 			break;
+		//Tank drive
 		case tankMode:
 			robotDrive.tankDrive(driverController.getRawAxis(1), driverController.getRawAxis(5));
 			break;
+		//GTA drive
 		case GTAMode:
 			break;
 			
