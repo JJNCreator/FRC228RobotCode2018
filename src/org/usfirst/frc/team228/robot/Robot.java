@@ -6,14 +6,12 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Compressor;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.DriverStation;
-=======
 
-import edu.wpi.first.wpilibj.drive.MecanumDrive;	//Imported if we need it
+//import edu.wpi.first.wpilibj.drive.MecanumDrive;	//Imported if we need it
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;	//Needed for drive train
 
->>>>>>> b89c8d3fc8b7635c08f5c08580a30e29791a4881
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
@@ -59,14 +57,13 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-<<<<<<< HEAD
+
 	
 	public void robotAuto() {
 	}
 	
 	@Override
-=======
->>>>>>> b89c8d3fc8b7635c08f5c08580a30e29791a4881
+
 	public void robotInit() {
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
