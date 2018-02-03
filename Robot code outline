@@ -2,5 +2,24 @@
 
 This outline will help us organize the functions of the robot, and how the code will be written.  
 
--Goals-
+--Goals--
+DRIVER
+
+OPERATOR
+
+ROBOT FUNCTIONS
+Autonomous
+
+Teleop
+
+--Code Structure--
+VARIABLES
+ - 2 XboxController (driver and operator)
+ - 1 DifferentialDrive for drive train
+ - 4 VictorSP (2 for left, and 2 for right)
+ - 3 strings (1 for arcade, 1 for tank, and 1 for GTA mode)
+ - 1 string for selected driver mode
+
+
+FUNCTIONS
 
