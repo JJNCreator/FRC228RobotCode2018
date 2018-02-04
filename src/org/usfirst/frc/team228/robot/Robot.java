@@ -211,6 +211,8 @@ public class Robot extends IterativeRobot {
 		}
 		
 		//OPERATOR CONTROLS
+		
+		//If we don't need this, we'll remove it
 		elevator(operatorController.getRawAxis(5));
 	}
 	public void elevator(double inputValue) {

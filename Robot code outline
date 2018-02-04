@@ -4,13 +4,23 @@ This outline will help us organize the functions of the robot, and how the code 
 
 --Goals--
 DRIVER
+ - Set up arcade drive
+ - Set up tank drive
+ - Set up GTA drive
 
 OPERATOR
+ - Set up elevator control
 
 ROBOT FUNCTIONS
+SmartDashboard
+  - Set up camera
+  - Set up auto selections
+  - Set up driver selections
 Autonomous
 
 Teleop
+ - Differential drivebase
+   - No mechanim drive base
 
 --Code Structure--
 VARIABLES
