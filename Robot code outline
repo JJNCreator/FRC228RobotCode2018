@@ -20,7 +20,7 @@ Autonomous
 
 Teleop
  - Differential drivebase
-   - No mechanim drive base
+   - No mecanum drive base
 
 --Code Structure--
 VARIABLES
