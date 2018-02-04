@@ -9,9 +9,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 
-//import edu.wpi.first.wpilibj.drive.MecanumDrive;	//Imported if we need it
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;	//Needed for drive train
-
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
