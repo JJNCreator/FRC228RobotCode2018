@@ -44,21 +44,15 @@ public class Robot extends IterativeRobot {
 	final String GTAMode = "GTA";
 	String driverMode;
 	boolean shifterButtonPrev;
-	boolean shiftLowGear;
-	
+	boolean shifterLowGear;
 	
 	//Change the names of the last two once we know what they're for
 	Solenoid driveShifter, s2, s3;
 	
 	Timer teleopTimer;
 	
-	
-	
 	SendableChooser<String> selectedDriverMode;
 	
-	
-
-
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 
@@ -187,9 +181,9 @@ public class Robot extends IterativeRobot {
 	public void robotTeleop() {
 		
 		//DRIVER CONTROLS
-		double arcadeLeftStick;
-		double tankLeftStick;
-		double tankRightStick;
+		double arcadeLeftStick; //stick value on the left side of the controller for arcade drive
+		double tankLeftStick; //stick value on the left side of the controller for tank drive
+		double tankRightStick; //stick value on the right side of the controller for tank drive
 		//Set the selected driver mode
 		driverMode = (String)selectedDriverMode.getSelected();
 		
@@ -241,11 +235,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void shifterControl(boolean shifterButton) {
 		if(shifterButton && shifterButton != shifterButtonPrev) {
-			shiftLowGear = !shiftLowGear;
+			shifterLowGear = !shifterLowGear;
 		}
 		shifterButtonPrev = shifterButton;
 		
-		if(shiftLowGear) {
+		if(shifterLowGear) {
 			driveShifter.set(true);
 		}
 		else {
@@ -253,7 +247,7 @@ public class Robot extends IterativeRobot {
 		}
 		
 	}
-	public void elevator(double inputValue) {
+	public void elevator(double elevatorValue) {
 		
 	}
 }
