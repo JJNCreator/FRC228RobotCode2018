@@ -34,7 +34,7 @@ import org.usfirst.frc.team228.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 	
 	XboxController driverController, operatorController;
-	DifferentialDrive drivetrain;
+	DifferentialDrive robotDrive;
 	VictorSP leftDrive1, leftDrive2, rightDrive1, rightDrive2;
 	
 	final String arcadeMode = "Arcade";
@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
 		SpeedControllerGroup rightDrive = new SpeedControllerGroup(rightDrive1, rightDrive2);
 		
 		//Assign the robot drive with the two SpeedController Groups
-		drivetrain = new DifferentialDrive(leftDrive, rightDrive);
+		robotDrive = new DifferentialDrive(leftDrive, rightDrive);
 		
 		//Assign the two controllers based on what port they're in
 		driverController = new XboxController(0);
@@ -186,7 +186,7 @@ public class Robot extends IterativeRobot {
 			else {
 				arcadeLeftStick = (-1 * Math.pow(driverController.getRawAxis(1), 2));
 			}
-			drivetrain.arcadeDrive(arcadeLeftStick, driverController.getRawAxis(4));
+			robotDrive.arcadeDrive(arcadeLeftStick, driverController.getRawAxis(4));
 			break;
 		//Tank drive
 		case tankMode:
@@ -202,7 +202,7 @@ public class Robot extends IterativeRobot {
 			else {
 				tankRightStick = (-1 * Math.pow(driverController.getRawAxis(5), 2));
 			}
-			drivetrain.tankDrive(tankLeftStick, tankRightStick);
+			robotDrive.tankDrive(tankLeftStick, tankRightStick);
 			break;
 		//GTA drive
 		case GTAMode:
