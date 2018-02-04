@@ -32,4 +32,5 @@ VARIABLES
 
 
 FUNCTIONS
-
+ - robotInit
+   - This is where values such as robotDrive and controllers are assigned

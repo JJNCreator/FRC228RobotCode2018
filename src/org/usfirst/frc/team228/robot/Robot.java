@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Solenoid;
 
 //import edu.wpi.first.wpilibj.drive.MecanumDrive;	//Imported if we need it
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;	//Needed for drive train
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team228.robot.commands.ExampleCommand;
 import org.usfirst.frc.team228.robot.subsystems.ExampleSubsystem;
@@ -41,6 +43,16 @@ public class Robot extends IterativeRobot {
 	final String tankMode = "Tank";
 	final String GTAMode = "GTA";
 	String driverMode;
+	boolean shifterButtonPrev;
+	boolean shiftLowGear;
+	
+	
+	//Change the names of the last two once we know what they're for
+	Solenoid driveShifter, s2, s3;
+	
+	Timer teleopTimer;
+	
+	
 	
 	SendableChooser<String> selectedDriverMode;
 	
@@ -81,6 +93,8 @@ public class Robot extends IterativeRobot {
 		leftDrive2 = new VictorSP(1);
 		rightDrive1 = new VictorSP(2);
 		rightDrive2 = new VictorSP(3);
+		
+		driveShifter = new Solenoid(0);
 		
 		//Since robotDrive can only take two SpeedControllers, we'll set up two
 		//SpeedController Groups to make a four-motor drive
@@ -146,6 +160,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		teleopTimer.reset();
+		teleopTimer.start();
+		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
@@ -186,6 +203,7 @@ public class Robot extends IterativeRobot {
 			else {
 				arcadeLeftStick = (-1 * Math.pow(driverController.getRawAxis(1), 2));
 			}
+			shifterControl(driverController.getAButton());
 			robotDrive.arcadeDrive(arcadeLeftStick, driverController.getRawAxis(4));
 			break;
 		//Tank drive
@@ -202,6 +220,7 @@ public class Robot extends IterativeRobot {
 			else {
 				tankRightStick = (-1 * Math.pow(driverController.getRawAxis(5), 2));
 			}
+			shifterControl(driverController.getAButton());
 			robotDrive.tankDrive(tankLeftStick, tankRightStick);
 			break;
 		//GTA drive
@@ -214,6 +233,25 @@ public class Robot extends IterativeRobot {
 		
 		//If we don't need this, we'll remove it
 		elevator(operatorController.getRawAxis(5));
+	}
+	
+	/**
+	 * This function toggles the driver shifter with the push of a button
+	 * @param shifterButton
+	 */
+	public void shifterControl(boolean shifterButton) {
+		if(shifterButton && shifterButton != shifterButtonPrev) {
+			shiftLowGear = !shiftLowGear;
+		}
+		shifterButtonPrev = shifterButton;
+		
+		if(shiftLowGear) {
+			driveShifter.set(true);
+		}
+		else {
+			driveShifter.set(false);
+		}
+		
 	}
 	public void elevator(double inputValue) {
 		
