@@ -3,14 +3,24 @@
 This outline will help us organize the functions of the robot, and how the code will be written.  
 
 --Goals--
-DRIVER
+DRIVER (Main)
+ - Set up arcade drive
+ - Set up tank drive
+ - Set up GTA drive
 
-OPERATOR
+OPERATOR (co-pilot)
+ - Set up elevator control
 
 ROBOT FUNCTIONS
+SmartDashboard
+  - Set up camera
+  - Set up auto selections
+  - Set up driver selections
 Autonomous
 
 Teleop
+ - Differential drivebase
+   - No mechanim drive base
 
 --Code Structure--
 VARIABLES
@@ -22,4 +32,5 @@ VARIABLES
 
 
 FUNCTIONS
-
+ - robotInit
+   - This is where values such as robotDrive and controllers are assigned
