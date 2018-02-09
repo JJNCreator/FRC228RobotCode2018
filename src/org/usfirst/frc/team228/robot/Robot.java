@@ -186,6 +186,7 @@ public class Robot extends IterativeRobot {
 		double tankRightStick; // stick value on the right side of the controller for tank drive
 		// Set the selected driver mode
 		final boolean accelerationLimiterOn = true;
+
 		driverMode = (String) selectedDriverMode.getSelected();
 
 		// switch between different driver modes based on the selected one
@@ -235,7 +236,7 @@ public class Robot extends IterativeRobot {
 		elevator(operatorController.getRawAxis(5));
 	}
 
-	public double rateLimiter(double value) {
+	public double rateLimiter(double currentInput) {
 		double speedRate;
 		double currentTime = teleopTimer.get();
 		double rateLimit = 0.5;
