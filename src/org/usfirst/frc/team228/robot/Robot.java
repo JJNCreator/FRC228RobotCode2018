@@ -36,8 +36,6 @@ public class Robot extends IterativeRobot {
 	XboxController driverController, operatorController;
 	DifferentialDrive robotDrive;
 	VictorSP leftDrive1, leftDrive2, rightDrive1, rightDrive2;
-
-	
 	
 	final String arcadeMode = "Arcade";
 	final String tankMode = "Tank";
@@ -48,7 +46,7 @@ public class Robot extends IterativeRobot {
 	
 	//Change the names of the last two once we know what they're for
 	Solenoid driveShifter, s2, s3;
-	
+		
 	Timer teleopTimer;
 	
 	SendableChooser<String> selectedDriverMode;
@@ -181,10 +179,12 @@ public class Robot extends IterativeRobot {
 	public void robotTeleop() {
 		
 		//DRIVER CONTROLS
+		double combinedTriggerValue;
 		double arcadeLeftStick; //stick value on the left side of the controller for arcade drive
 		double tankLeftStick; //stick value on the left side of the controller for tank drive
 		double tankRightStick; //stick value on the right side of the controller for tank drive
 		//Set the selected driver mode
+		final boolean accelerationLimiterOn = true;
 		driverMode = (String)selectedDriverMode.getSelected();
 		
 		//switch between different driver modes based on the selected one
@@ -219,6 +219,14 @@ public class Robot extends IterativeRobot {
 			break;
 		//GTA drive
 		case GTAMode:
+			combinedTriggerValue = (-1 * Math.pow(driverController.getRawAxis(2), 2) + Math.pow(driverController.getRawAxis(3), 2));
+			shifterControl(driverController.getAButton);
+			if(driveShifter.get() == true || !accelerationLimiterOn) {
+				robotDrive.arcadeDrive(combinedTriggerValue, driverController.getRawAxis(0));
+			}
+			else {
+				robotDrive.arcadeDrive(rateLimiter(combinedTriggerValue), driverController.getRawAxis(0));
+			}
 			break;
 			
 		}
@@ -227,6 +235,25 @@ public class Robot extends IterativeRobot {
 		
 		//If we don't need this, we'll remove it
 		elevator(operatorController.getRawAxis(5));
+	}
+	
+	public double rateLimiter(double value) {
+		double speedRate;
+		double currentTime = teleopTimer.get();
+		double rateLimit = 0.5;
+
+		rateLimit = SmartDashboard.getNumber("Acceleration Limit", rateLimit);	//update rateLimit from SDB
+		
+		speedRate = (currentInput - previousInput) / (currentTime - previousTime);
+		
+		if(speedRate > rateLimit) {
+			currentInput = previousInput + rateLimit * (currentTime - previousTime);
+		}
+		else if (speedRate < (-1) * rateLimit) {
+			currentInput = previousInput - rateLimit * (currentTime - previousTime);
+		}
+		return currentInput;
+	}
 	}
 	
 	/**
@@ -245,7 +272,6 @@ public class Robot extends IterativeRobot {
 		else {
 			driveShifter.set(false);
 		}
-		
 	}
 	public void elevator(double elevatorValue) {
 		
