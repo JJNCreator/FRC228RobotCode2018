@@ -6,6 +6,7 @@ This is the code for GUS Robotics' robot for the 2018 game FIRST Power Up.  To u
 - The most recent version of Eclipse Java
 - The FRC Update Suite
 - The FRC Plugins
+- Talon SRX plugin (see steps below)
 
 This is also available for programmers of other teams to read and help build their own code.  
 

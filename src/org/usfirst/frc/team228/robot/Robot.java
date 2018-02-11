@@ -67,6 +67,9 @@ public class Robot extends IterativeRobot {
 
 	@Override
 
+	/***
+	 * This function assigns initial variables that will run in the code
+	 */
 	public void robotInit() {
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
@@ -85,7 +88,10 @@ public class Robot extends IterativeRobot {
 		rightDrive1 = new VictorSP(2);
 		rightDrive2 = new VictorSP(3);
 
+		// Assign these for now, but eventually, we'll probably have to change them
 		driveShifter = new Solenoid(0);
+		s2 = new Solenoid(1);
+		s3 = new Solenoid(2);
 
 		// Since robotDrive can only take two SpeedControllers, we'll set up two
 		// SpeedController Groups to make a four-motor drive
@@ -232,7 +238,7 @@ public class Robot extends IterativeRobot {
 
 		// OPERATOR CONTROLS
 
-		// If we don't need this, we'll remove it
+		// If we don't need this, we'll remove it or change it
 		elevator(operatorController.getRawAxis(5));
 	}
 
