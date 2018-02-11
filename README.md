@@ -1,6 +1,6 @@
 # FRC228RobotCode2018
 
-This is the code for GUS Robotics' robot for the 2018 game FIRST Power Up.  To download this code, you need the following:
+This is the code for GUS Robotics' robot for the 2018 game FIRST Power Up.  To use this code, you need the following:
 
 - The latest version of Java, JDK, and JRE
 - The most recent version of Eclipse Java
